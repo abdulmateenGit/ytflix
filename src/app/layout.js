@@ -8,6 +8,7 @@ const mulish = Mulish({
 })
 
 import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 
 export const metadata = {
@@ -21,6 +22,7 @@ export default function RootLayout({children}) {
         <body>
         <Header/>
         {children}
+        <Footer />
         </body>
         </html>
     )

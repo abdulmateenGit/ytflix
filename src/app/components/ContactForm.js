@@ -24,7 +24,7 @@ const ContactForm = () => {
         const name = e.target.name;
         const value = e.target.value;
 
-        setUser((prevUser) => ({...prevUser, [name] : value}));
+        setUser((prevUser) => ({...prevUser, [name]: value}))
     }
 
     const handleSubmit = async (e) => {
