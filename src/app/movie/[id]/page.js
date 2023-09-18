@@ -1,37 +1,39 @@
-import React from "react";
+import React from 'react';
+import styles from "@/app/styles/common.module.css"
 import Image from "next/image";
 
-import styles from "@/app/styles/common.module.css"
-
 const Page = async ({params}) => {
-    const id = params.id
+    const id = params.id;
 
-    const url = `https://netflix54.p.rapidapi.com/title/details/?ids=${id}&lang=eng`;
+    const url = `https://ott-details.p.rapidapi.com/gettitleDetails?imdbid=${id}`;
+
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '8a17529d73msh790cc0c90b9b5a2p139ce2jsne4affeaa8ca9',
-            'X-RapidAPI-Host': 'netflix54.p.rapidapi.com'
+            'X-RapidAPI-Key': 'ddd1c6d054msh245a5b7a998694ap1fa3ecjsn6f2b82efd981',
+            'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
         }
     };
 
-    const res = await fetch(url, options)
-    const data = await res.json()
-    const main_data = data[0].details;
+    const res = await fetch(url, options);
+    const data = await res.json();
+    const main_data = data;
+
     return (
-        <>
-            <div className={styles.container}>
-                <h2 className={styles.movie_title}>Netflix\<span>{main_data.type}</span></h2>
+
+        <div className={styles.container}>
+            <h2 className={styles.movie_title}>   Netflix \ <span> {main_data.type} </span> </h2>
+            <div className={styles.card_section}>
                 <div>
-                    <Image src={main_data.backgroundImage.url} alt={main_data.title} width={600} height={300}/>
+                    <Image src={main_data.imageurl[0]} alt={main_data.title} width={500} height={680} />
                 </div>
                 <div>
                     <h1>{main_data.title}</h1>
                     <p>{main_data.synopsis}</p>
                 </div>
             </div>
+        </div>
 
-        </>
     );
 };
 
